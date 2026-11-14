@@ -1,13 +1,57 @@
-<!doctype html><meta charset="utf-8"><style>
-body{margin:0;width:1280px;height:720px;overflow:hidden;font-family:Inter,sans-serif;color:#fff;background:radial-gradient(900px 500px at 10% 0%,#22347a,transparent 60%),radial-gradient(800px 600px at 100% 100%,#3a1c63,transparent 55%),#0b1020}
-.k{position:absolute;left:60px;top:50px;font:800 30px 'JetBrains Mono';letter-spacing:.14em;color:#f5c542}
-h1{position:absolute;left:60px;top:100px;margin:0;font-size:104px;line-height:1.02;font-weight:900;letter-spacing:-.035em}
-h1 b{color:#44d19a}h1 i{font-style:normal;color:#f5c542}
-.s{position:absolute;left:60px;top:440px;font-size:40px;font-weight:700;color:#cdd5f5}
-.r{position:absolute;left:60px;bottom:50px;display:flex;gap:14px;flex-wrap:wrap;width:1160px}
-.r span{font:800 28px Inter;padding:10px 20px;border-radius:99px;border:3px solid var(--c);color:var(--c);background:#0b1020}
-.e{position:absolute;right:50px;top:60px;font-size:210px;font-family:'Noto Color Emoji'}
-</style><div class="k">ZERO SE INTERVIEW TAK · HINGLISH</div>
-<h1>Real ERP ka<br><b>Poora</b> <i>Architecture</i><br>30 min me</h1>
-<div class="s">3,000 students ek saath — server crash kyun nahi hota?</div><div class="e">⛓️</div>
-<div class="r"><span style="--c:#44d19a">Django</span><span style="--c:#6aa9ff">PostgreSQL</span><span style="--c:#ff6b5e">Redis</span><span style="--c:#b9e34f">Celery</span><span style="--c:#4ab3ff">Docker</span><span style="--c:#3fd0c9">Gunicorn</span><span style="--c:#35c46b">Nginx</span><span style="--c:#b48cff">PgBouncer</span></div>
+<!doctype html><meta charset="utf-8">
+<style>
+@font-face { font-family: Anton; src: url(https://cdn.jsdelivr.net/npm/@fontsource/anton/files/anton-latin-400-normal.woff2); }
+@font-face { font-family: Sora; font-weight: 100 800; src: url(https://cdn.jsdelivr.net/npm/@fontsource-variable/sora/files/sora-latin-wght-normal.woff2); }
+* { box-sizing: border-box; margin: 0; }
+body { width: 1280px; height: 720px; overflow: hidden; background: #05070f; font-family: Sora, sans-serif; color: #fff; position: relative; }
+.bg { position: absolute; inset: 0;
+  background:
+    radial-gradient(620px 520px at 78% 46%, rgba(64, 110, 255, .55), transparent 70%),
+    radial-gradient(520px 420px at 96% 96%, rgba(170, 70, 255, .45), transparent 70%),
+    radial-gradient(700px 500px at 0% 0%, rgba(20, 40, 110, .9), transparent 70%),
+    #05070f; }
+.grid { position: absolute; inset: 0; opacity: .5;
+  background-image: linear-gradient(rgba(120, 150, 255, .10) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 150, 255, .10) 1px, transparent 1px);
+  background-size: 48px 48px; mask-image: radial-gradient(700px 520px at 78% 50%, #000, transparent 75%); }
+.vig { position: absolute; inset: 0; box-shadow: inset 0 0 220px 60px rgba(0, 0, 0, .75); }
+.tag { position: absolute; left: 56px; top: 46px; display: flex; gap: 12px; align-items: center; font-weight: 700; font-size: 23px; letter-spacing: .14em; }
+.tag b { background: #ffd43b; color: #111; padding: 7px 16px; border-radius: 8px; font-weight: 800; }
+.tag span { color: #c9d4ff; }
+h1 { position: absolute; left: 50px; top: 112px; font-family: Anton, sans-serif; font-weight: 400; line-height: .92; text-transform: uppercase; }
+h1 .a { display: block; font-size: 128px; letter-spacing: .005em; color: #fff; text-shadow: 0 8px 0 rgba(0, 0, 0, .35); }
+h1 .b { display: block; font-size: 218px; letter-spacing: .01em; margin-top: 6px;
+  background: linear-gradient(180deg, #fff27a 0%, #ffd21f 45%, #ff9d0a 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 10px 0 rgba(0, 0, 0, .45)) drop-shadow(0 0 46px rgba(255, 190, 30, .45)); }
+.sub { position: absolute; left: 58px; bottom: 50px; font-size: 36px; font-weight: 700; color: #e8edff; letter-spacing: -.01em; }
+.sub i { font-style: normal; color: #7fe0b0; }
+
+/* layered stack */
+.stack { position: absolute; right: -8px; top: 60px; width: 430px; height: 540px; perspective: 1400px; transform: scale(.86); transform-origin: top right; }
+.pl { position: absolute; left: 0; width: 430px; height: 96px; border-radius: 22px; transform: rotateX(54deg) rotateZ(-34deg); transform-origin: center;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--c) 92%, #fff), color-mix(in srgb, var(--c) 70%, #000));
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, .35) inset, -14px 22px 0 color-mix(in srgb, var(--c) 38%, #000), -14px 22px 60px color-mix(in srgb, var(--c) 70%, transparent), 0 0 80px color-mix(in srgb, var(--c) 45%, transparent);
+  display: flex; align-items: center; padding-left: 34px; font: 800 40px Sora; color: #06101f; letter-spacing: -.01em; }
+.pl small { margin-left: auto; margin-right: 30px; font: 700 20px Sora; opacity: .7; letter-spacing: .08em; }
+.bolt { position: absolute; right: 190px; top: 40px; width: 14px; height: 640px; border-radius: 10px; transform: rotate(8deg);
+  background: linear-gradient(180deg, transparent, #fff 18%, #9fd0ff 50%, #fff 82%, transparent); filter: blur(1px) drop-shadow(0 0 22px #6aa9ff) drop-shadow(0 0 60px #6aa9ff); opacity: .9; }
+.x { position: absolute; left: 752px; top: 196px; transform: rotate(-6deg) scale(.82); transform-origin: left top; z-index: 5; font: 900 30px Sora; padding: 10px 18px; border-radius: 12px; background: #ff3b57; color: #fff; box-shadow: 0 10px 30px rgba(255, 59, 87, .5); letter-spacing: .02em; }
+.x s { text-decoration-thickness: 4px; }
+.dur { position: absolute; right: 44px; bottom: 40px; font: 800 30px Sora; background: rgba(8, 12, 28, .85); border: 2px solid rgba(255, 255, 255, .25); padding: 10px 20px; border-radius: 14px; }
+.dur b { color: #ffd43b; }
+</style>
+<div class="bg"></div><div class="grid"></div>
+<div class="bolt"></div>
+<div class="stack">
+  <div class="pl" style="top:0;--c:#35c46b">Nginx<small>PROXY</small></div>
+  <div class="pl" style="top:88px;--c:#3fd0c9">Gunicorn<small>WORKERS</small></div>
+  <div class="pl" style="top:176px;--c:#44d19a">Django<small>APP</small></div>
+  <div class="pl" style="top:264px;--c:#ff6b5e">Redis<small>CACHE</small></div>
+  <div class="pl" style="top:352px;--c:#b9e34f">Celery<small>QUEUE</small></div>
+  <div class="pl" style="top:440px;--c:#6aa9ff">PostgreSQL<small>DATA</small></div>
+</div>
+<div class="vig"></div>
+<div class="tag"><b>SYSTEM DESIGN</b><span>ZERO SE INTERVIEW TAK</span></div>
+<h1><span class="a">3000 Logins</span><span class="b">0 Crash</span></h1>
+<div class="sub">Django se Docker tak · <i>poora architecture</i></div>
+<div class="x"><s>502 ERROR</s></div>
+<div class="dur"><b>25 MIN</b> · Hinglish</div>
