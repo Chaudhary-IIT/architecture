@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academic ERP Architecture — Zero se Interview tak</title>
+<meta name="description" content="Django, PostgreSQL, Gunicorn, Nginx, Docker, Redis, Celery, PgBouncer aur hash-chain audit log — ek real academic ERP ke architecture se seekho. Animated lessons, quiz, interview Q&A aur AI doubt solver. Hinglish me.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛓️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top">
+  <button class="menu" id="menuBtn" aria-label="Chapters">☰</button>
+  <a class="brand" href="#/start"><span>⛓️</span> ERP Architecture <em>zero se</em></a>
+  <nav>
+    <a href="#/start">Chapters</a>
+    <a href="#/playground">Hash playground</a>
+    <a href="#/interview">Interview bank</a>
+    <a id="ytLink" href="#" target="_blank" rel="noopener" hidden>▶ Full video</a>
+  </nav>
+  <button class="ask" id="askBtn">💬 Ask a doubt</button>
+</header>
+
+<div class="shell">
+  <aside class="side" id="side">
+    <div class="prog"><div class="progbar"><i id="progFill"></i></div><span id="progTxt">0 / 13 done</span></div>
+    <ol id="toc"></ol>
+    <div class="sep"></div>
+    <a class="extra" href="#/playground">🧪 Hash chain playground</a>
+    <a class="extra" href="#/interview">🎯 Interview bank</a>
+    <a class="extra" href="#/map">🗺️ Architecture map</a>
+  </aside>
+  <main id="main" tabindex="-1"></main>
+</div>
+
+<section class="chat" id="chat" aria-label="Doubt chat" hidden>
+  <header>
+    <b>💬 Doubt poochho</b>
+    <span class="mode" id="chatMode">offline notes</span>
+    <button id="chatCfg" title="AI settings">⚙️</button>
+    <button id="chatX" title="Close">✕</button>
+  </header>
+  <div class="cfg" id="cfgBox" hidden>
+    <p><b>Free AI tutor on karo (optional)</b><br>Google AI Studio se ek free Gemini API key banao (<a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>) aur yahan paste karo. Key sirf <u>aapke browser</u> me save hoti hai aur seedha Google ko jaati hai.</p>
+    <input id="keyIn" type="password" placeholder="Gemini API key (AIza…)" autocomplete="off">
+    <div class="row"><button id="keySave">Save &amp; test</button><button id="keyClear" class="ghost">Remove key</button></div>
+    <p class="st" id="keySt"></p>
+  </div>
+  <div class="msgs" id="msgs"></div>
+  <div class="sugg" id="sugg"></div>
+  <form id="chatForm"><textarea id="chatIn" rows="1" placeholder="Jaise: PgBouncer transaction mode kya hota hai?"></textarea><button aria-label="Send">➤</button></form>
+</section>
+
+<script src="assets/config.js"></script>
+<script src="assets/content.js"></script>
+<script src="assets/transcript.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
