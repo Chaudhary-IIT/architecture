@@ -1,7 +1,5 @@
-TITLE (options)
-1. Django + PostgreSQL + Redis + Celery + Docker: Ek Real ERP ka Poora Architecture | Zero se Interview tak (Hinglish)
-2. System Design for Beginners: Academic ERP kaise bana hai? Django, Gunicorn, Nginx, PgBouncer, Hash Chain Audit Log
-3. 35 Minute me Backend Architecture: Django se Docker tak | Interview Q&A ke saath
+TITLE
+System Design for Beginners: Academic ERP kaise bana hai? Django, Gunicorn, Nginx, PgBouncer, Hash Chain Audit Log
 
 DESCRIPTION
 3,000 students ek saath course registration karte hain — phir bhi server crash nahi hota, data galat nahi hota, aur har click ka record rehta hai. Kaise?
