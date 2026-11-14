@@ -87,7 +87,8 @@ def main(meta_path, out_path):
     fade = np.clip(np.arange(n) / SR / 1.2, 0, 1) * np.clip((n - np.arange(n)) / SR / 1.2, 0, 1)
     fx *= 1 - 0.5 * np.clip(mavg(speaking, int(0.15 * SR)) * 3, 0, 1)     # effects sit back under speech
     mix = voice + fx + bed * (g_open + (g_speech - g_open) * duck) * fade
-    mix = np.tanh(mix * 1.1) / np.tanh(1.1)                           # soft limiter
+    mix *= 0.5 / max(np.percentile(np.abs(mix), 99.9), 1e-6)          # clean headroom: no saturation here;
+    mix = np.clip(mix, -0.9, 0.9)                                     # loudness and peak limiting happen once, in final.py
     pcm = (np.clip(mix, -1, 1) * 32767).astype(np.int16)
     with wave.open(out_path, "wb") as w:
         w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(np.repeat(pcm, 2).tobytes())

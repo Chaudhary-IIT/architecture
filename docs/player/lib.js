@@ -9,7 +9,7 @@ const CHAPTERS = [];
 const BEATS = [];
 const SFX = [];
 const sfx = (type, t) => SFX.push({ t: +t.toFixed(3), type });
-const GAP = 0.22;
+const GAP = 0.34;
 let T = 0;
 let curCh = null;
 

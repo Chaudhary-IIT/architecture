@@ -1,0 +1,42 @@
+TITLE (options)
+1. Django + PostgreSQL + Redis + Celery + Docker: Ek Real ERP ka Poora Architecture | Zero se Interview tak (Hinglish)
+2. System Design for Beginners: Academic ERP kaise bana hai? Django, Gunicorn, Nginx, PgBouncer, Hash Chain Audit Log
+3. 35 Minute me Backend Architecture: Django se Docker tak | Interview Q&A ke saath
+
+DESCRIPTION
+3,000 students ek saath course registration karte hain — phir bhi server crash nahi hota, data galat nahi hota, aur har click ka record rehta hai. Kaise?
+
+Is video me hum ek real academic ERP (student registration, grading, bulk uploads) ka poora architecture bilkul zero se samjhenge — aur har topic ke baad: interview me kya bolna hai.
+
+🌐 Companion website (interactive animations, quiz, 70+ interview Q&A, AI doubt solver): <YOUR-SITE-LINK>
+
+⏱️ CHAPTERS
+0:00 10:00:00 — 3000 students, ek button
+0:49 Web Basics
+1:51 Django
+3:54 Django ORM
+5:44 PostgreSQL
+8:10 Gunicorn
+10:10 Nginx
+11:13 Docker
+12:59 Redis
+15:09 Celery
+16:48 PgBouncer
+18:13 Login & Security
+19:42 Audit Hash Chain
+23:15 Poora safar + interview one-liners
+
+🧠 Is video me
+• Django: MVT, request lifecycle, middleware • ORM: QuerySet, migrations, N+1, select_related
+• PostgreSQL: ACID, constraints, indexes, race conditions • Gunicorn: WSGI, workers, threads, GIL
+• Nginx / reverse proxy: TLS, buffering, static files • Docker & docker-compose: image, container, volumes
+• Redis: cache-aside, sessions, rate limiting, eviction • Celery: task queue, progress polling, Beat
+• PgBouncer: connection pooling, transaction mode • Login & security: LDAP, sessions, CSRF
+• Audit log hash chain: SHA-256, sealing, verify, limits
+
+🧠 Video me 4 quick quiz hain — apna score comment me batao!
+
+Note: narration AI voice (text-to-speech) se bani hai; music aur sound effects original (synthesized) hain.
+
+TAGS
+django, postgresql, redis, celery, docker, gunicorn, nginx, pgbouncer, system design hindi, backend architecture, django interview questions, system design for beginners, hash chain, audit log, web development hindi, hinglish, placement preparation, backend developer roadmap

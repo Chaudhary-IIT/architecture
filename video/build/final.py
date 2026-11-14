@@ -10,14 +10,19 @@ open(os.path.join(O, "concat.txt"), "w").write("".join(f"file '{O}/chapters/{c['
 final = os.path.join(D, "ERP_Architecture_Hinglish_1080p.mp4")
 joined = os.path.join(O, "joined.mp4")
 subprocess.check_call(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", os.path.join(O, "concat.txt"), "-c", "copy", joined])
-def loud(path, extra=""):
-    r = subprocess.run(["ffmpeg", "-hide_banner", "-i", path, "-vn", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json" + extra, "-f", "null", "-"], capture_output=True, text=True).stderr
-    return json.loads(r[r.rindex("{"):r.rindex("}") + 1])
-m = loud(joined)   # pass 1: measure; pass 2: linear gain to -14 LUFS with a true-peak ceiling, video untouched
-af = f"loudnorm=I=-14:TP=-1.5:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true"
-subprocess.check_call(["ffmpeg", "-v", "error", "-y", "-i", joined, "-c:v", "copy", "-af", af, "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", final])
-after = loud(final)
-print("loudness after AAC encode:", after["input_i"], "LUFS, true peak", after["input_tp"], "dBTP")
+def meas(path):
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", path, "-vn", "-af", "ebur128=peak=true", "-f", "null", "-"], capture_output=True, text=True).stderr
+    tail = r[r.rindex("Summary:"):]
+    return float(re.search(r"I:\s*(-?[\d.]+) LUFS", tail).group(1)), float(re.search(r"Peak:\s*(-?[\d.]+) dBFS", tail).group(1))
+I0, _ = meas(joined)
+gain = -14.0 - I0
+for _try in range(4):   # gain to -14 LUFS, limiter 3 dB under full scale; re-measure AFTER the AAC encode and correct
+    af = f"volume={gain:.2f}dB,alimiter=limit=0.66:attack=2:release=80:level=false"
+    subprocess.check_call(["ffmpeg", "-v", "error", "-y", "-i", joined, "-c:v", "copy", "-af", af, "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", final])
+    I1, tp = meas(final)
+    print(f"after AAC encode: {I1} LUFS, true peak {tp} dBTP (gain {gain:.2f} dB)")
+    if abs(I1 + 14) <= 0.4: break
+    gain += -14.0 - I1
 
 def ts(t, sep=","):
     ms = int(round(t * 1000)); h, ms = divmod(ms, 3600000); m, ms = divmod(ms, 60000); s, ms = divmod(ms, 1000)

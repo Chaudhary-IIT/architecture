@@ -236,10 +236,15 @@ def check(blocks=BLOCKS):
              "energy_1to10 (1 lethargic .. 10 rushed; 7 is ideal brisk-but-relaxed), feels_rushed (bool), sounds_like_separate_announcements (bool), emotion_1to10, notes.\n\nSCRIPT:\n"
              + "\n".join(b["say"] for b in bts))
         body = {"contents": [{"parts": [{"inlineData": {"mimeType": "audio/mp3", "data": base64.b64encode(open(mp3, "rb").read()).decode()}}, {"text": q}]}], "generationConfig": {"responseMimeType": "application/json", "temperature": 0}}
-        for judge in judges * 2:
+        for attempt in range(14):
+            if not judges: break
+            judge = judges[attempt % len(judges)]
             code, j = call(f"{judge}:generateContent", body)
             try: res[name] = json.loads(j["candidates"][0]["content"]["parts"][0]["text"]); res[name]["judge"] = judge; break
-            except Exception: res[name] = {"NO_RESULT": code, "detail": str(j)[:200]}; time.sleep(8)
+            except Exception:
+                res[name] = {"NO_RESULT": code, "detail": str(j)[:200]}
+                if code == 404: judges.remove(judge)             # model not offered on this key: stop trying it
+                else: time.sleep(15)
         json.dump(res, open(cp, "w"), ensure_ascii=False, indent=1)
         print(name, json.dumps(res[name], ensure_ascii=False)[:600]); time.sleep(5)
     json.dump(res, open(os.path.join(OUT, "check.json"), "w"), ensure_ascii=False, indent=1)

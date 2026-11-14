@@ -15,7 +15,9 @@ Docker, Redis, Celery, PgBouncer, hash-chained audit log), aimed at first-year s
 ```bash
 cd video && npm install                 # gsap; needs Playwright + Chromium, ffmpeg, python3 with numpy and edge-tts
 node build/beats.mjs                    # export narration beats -> out/beats.json
-RATE="+22%" python3 build/tts.py        # free Edge neural voice -> audio/*.mp3 + durations.js
+python3 build/voice.py synth            # Gemini TTS, one request per narrator block (needs GEMINI_API_KEY)
+python3 build/voice.py cut              # align words, cut pauses, slice per beat -> audio/*.mp3 + durations.js
+python3 build/voice.py check            # listening-model check against the script
 node build/beats.mjs                    # re-export with real timings
 ls chapters | sed 's/_.*//' | xargs -P 4 -I{} node build/render.mjs {}   # one MP4 per chapter
 python3 build/final.py                  # join + subtitles + description -> ../deliverables
